@@ -20,6 +20,9 @@ $stmt->execute();
 
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
+$name = $user['name'];
+$password = $user['password'];
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST')
 {
     $name = h($_POST['name']);
@@ -107,19 +110,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         </div>
     <?php endif; ?>
     <form action="" method="post">
-        ユーザネーム: <input type="text" name="name"
-        <?php if(isset($name)): ?>
-            value="<?=h($name) ?>"><br>
-        <?php else: ?>
-            value="<?=h($user['name']) ?>"><br>
-        <?php endif; ?>
-
-        パスワード: <input type="text" name="password"
-        <?php if(isset($password)) :?>
-            value="<?=h($password) ?>"><br>
-        <?php else :?>
-            value="<?=h($user['password']) ?>"><br>
-        <?php endif; ?>
+        ユーザネーム: <input type="text" name="name" value="<?=h($name) ?>"><br>
+        パスワード: <input type="text" name="password" value="<?=h($password) ?>"><br>
         <input type="submit" value="編集する">
     </form>
     <a href="signup.php">新規ユーザー登録はこちら</a>
