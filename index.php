@@ -35,6 +35,7 @@ $user = $stmt->fetch(PDO::FETCH_ASSOC);
 <body>
     <h1>登録したユーザーのみ閲覧可能です！</h1>
     <h2><?php echo h($user['name']); ?>さん ようこそ！</h2>
+    <p><a href="edit_profile.php">ユーザ編集</a></p>
     <p><a href="logout.php">ログアウト</a></p>
 </body>
 </html>

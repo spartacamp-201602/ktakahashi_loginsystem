@@ -20,6 +20,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST')
         $errors[] = 'パスワードが未入力です。';
     }
 
+    $dbh = connectDatabase();
+    $sql = 'select * from users where name = :name';
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindParam(':name', $name);
+    $stmt->execute();
+
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user)
+    {
+        $errors[] = 'すでにそのユーザネームは登録されています。';
+    }
+
     if (empty($errors))
     {
         $dbh = connectDatabase();
